@@ -4,14 +4,14 @@ import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const Navbar = () => {
-    const {user, logOut} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
-    const handleSignOut=()=>{
+    const handleSignOut = () => {
         logOut()
-        .then(()=>{
-            alert('Log Out Successfully')
-        })
-        .catch(error=> console.log(error))
+            .then(() => {
+                alert('Log Out Successfully')
+            })
+            .catch(error => console.log(error))
     }
     const menuItems = <>
         <li><NavLink to="/">Home</NavLink></li>
@@ -41,16 +41,25 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar mr-4">
-                        <div className="w-12 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
-                        </div>
-                    </div>
                     {
-                        user ? 
-                        <button onClick={handleSignOut} className="btn btn-neutral rounded-none">Log Out</button>
-                        :
-                        <Link to="/login" className="btn btn-neutral rounded-none">Login</Link>
+                        user ?
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar mr-3">
+                                <div className="w-12 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                                </div>
+                            </div>
+                            :
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar mr-3">
+                                <div className="w-12 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                </div>
+                            </div>
+                    }
+                    {
+                        user ?
+                            <button onClick={handleSignOut} className="btn btn-neutral rounded-none">Log Out</button>
+                            :
+                            <Link to="/login" className="btn btn-neutral rounded-none">Login</Link>
                     }
                 </div>
             </div>
